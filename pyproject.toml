@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "bng36-wgs84-conversion"
 version = "0.1.0"
-description = "Python Poetry Boilerplate"
+description = "Convert BNG (OSGB36) <--> WGS84 coordinates."
 authors = ["face0b1101 <6190957+face0b1101@users.noreply.github.com>"]
 maintainers = ["face0b1101 <6190957+face0b1101@users.noreply.github.com>"]
 readme = "README.md"
@@ -13,11 +13,10 @@ documentation = "https://github.com/face0b1101/bng36-wgs84-conversion"
 python = "^3.11"
 python-decouple = "^3.6"
 Unipath = "^1.1"
-rich = "^12.5.1"
 pyproj = "^3.6.1"
 fastapi = "^0.109.0"
 pydantic = "^2.5.3"
-uvicorn = {extras = ["standard"], version = "^0.27.0"}
+uvicorn = { extras = ["standard"], version = "^0.27.0" }
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
@@ -27,7 +26,6 @@ jupyter = "^1.0.0"
 pytest = "^6.2.5"
 tox = "^3.25.1"
 isort = "^5.10.1"
-scrapy-gui = "^1.2"
 flake8-bugbear = "^23.9.16"
 httpx = "^0.26.0"
 requests = "^2.31.0"
