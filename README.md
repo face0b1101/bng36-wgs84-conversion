@@ -1,161 +1,68 @@
-# python-boilerplate #
+# BNG36 <--> WGS84 Coordinate Conversion API
 
-Python Poetry Boilerplate Project Structure
+This is a simple FastAPI application for converting coordinates between the British National Grid (BNG, OSGB36) system and the WGS84 coordinate system.
 
-## Folder Structure ##
+## Features
 
-```sh
-python-poetry-boilerplate
-├── .github
-│   └── workflows                 # Workflows
-│       ├── development.yaml      # Production workflow
-│       └── production.yaml       # Development workflow
-├── conftest.py                   # pytest configuration file
-├── notebooks
-│   └── test.ipynb                # Test Jupyter notebook (for development)
-├── src
-│   └── python_poetry_boilerplate
-│       ├── config
-│       │   ├── __init__.py 
-│       │   └── env.py            # Environment variables module
-│       ├── libs
-│       │   ├── __init__.py 
-│       │   └── my_libs.py        # Utility libraries
-│       ├── main.job.py           # Main job script
-│       └── main.service.py       # Main service script
-├── tests
-│   ├── __init__.py
-│   ├── test_job.py               # Test job script
-│   └── test_my_libs.py           # Test libraries
-├── .dockerignore                 # Docker ignore file
-├── .env.example                  # Environment variables example
-├── .gitignore                    # Git ignore file
-├── conftest.py                   # Test configuration file
-├── Dockerfile.kubernetes         # Dockerfile for kubernetes
-├── Dockerfile.lambda             # Dockerfile for lambda
-├── Makefile                      # Makefile
-├── poetry.lock                   # Poetry lock file
-├── pyproject.toml                # Pyproject.toml
-└── README.md                     # Readme
+- Convert from BNG (OSGB36) to WGS84 coordinates.
+- Convert from WGS84 to BNG (OSGB36) coordinates.
+
+## Installation
+
+To run this application, you will need Python installed on your system. The application uses FastAPI and pyproj for coordinate conversions, and Poetry to manage the project.
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/face0b1101/bng36-wgs84-conversion
+   ```
+
+2. Navigate to the cloned directory:
+
+   ```bash
+   cd bng36-wgs84-conversion
+   ```
+
+3. Install the dependencies using Poetry:
+
+   ```bash
+   poetry install
+   ```
+
+## Usage
+
+To start the application, you can use Poetry to run the Uvicorn server:
+
+```bash
+poetry run uvicorn bng36_wgs84_conversion.main:app --reload
 ```
 
-## How to Create a new Project ##
+The application will start on `http://127.0.0.1:8000`. You can access the API documentation and try out the API by navigating to `http://127.0.0.1:8000/docs`.
 
-There are two ways to create a new Project.
+### API Endpoints
 
-### 1. Create a new Project from the repo as a template ### 
+- `POST /convert/bng_to_wgs84`: Converts BNG (OSGB36) coordinates to WGS84 coordinates.
+  - Input: JSON with `easting` and `northing` fields.
+  - Output: JSON with `latitude` and `longitude` fields.
 
-Pretty straightforward. Go to the [repository](https://github.com/face0b1101/python-poetry-boilerplate) and click the green `Use this template` button.
+- `POST /convert/wgs84_to_bng`: Converts WGS84 coordinates to BNG (OSGB36) coordinates.
+  - Input: JSON with `latitude` and `longitude` fields.
+  - Output: JSON with `easting` and `northing` fields.
 
-See [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) for more details.
+## Example
 
-### 2. Create a Fork ###
+```json
+// BNG to WGS84
+POST /convert/bng_to_wgs84
+{
+  "easting": 530000,
+  "northing": 180000
+}
 
-Alternatively, create a fork the _old-fashioned_ way:
-
-- Create new repository on GitHub (`new-repository-name`)
-- Create another folder on local machine
-- Bare clone this repository
-
-    ```bash
-    git clone --bare https://github.com/face0b1101/python-poetry-boilerplate
-    ```
-
-- CD to this folder (with .git suffix) and push mirror to GitHub
-
-    ```bash
-    cd python-boilerplate.git
-    git push --mirror https://github.com/face0b1101/new-repository-name.git
-    ```
-
-- Remove `python-poetry-boilerplate.git` folder from local folder
-- Clone `new-repository-name` to local folder
-
-### Housekeeping ###
-
-When you have your new project set up, a bit of housekeeping is required:
-
-1. Rename `src/python_poetry_boilerplate` to `src/new_repository_name`
-
-2. Update `pyproject.toml`
-    - replace `python-poetry-boilerplate` with `new-repository-name`
-    - replace `python_poetry_boilerplate` with `new_repository_name`
-    - update other items in `[tool.poetry]` as appropriate (e.g. python version)
-
-3. Update pytest scripts
-    - update imports in `tests/test_my_app.py`
-
-4. Rename `.env.example` to `.env`
-
-5. Ensure python version is set
-    ```bash
-    pyenv local 3.11.1
-
-    # check the version
-    pyenv version
-    
-    python --version
-    ```
-
-    `3.11.1 (set by .python-version)`
-
-6. Update dependancies [OPTIONAL]
-    ```bash
-    poetry update
-    ```
-   There may be some errors with pyqtwebengine. If so, do this:
-    ```bash
-    poetry remove pyqtwebengine-qt5
-    poetry add pyqtwebengine-qt5@5.15.2
-   ```
-
-8. Create a new virtualenv and install code via Poetry
-
-    ```bash
-    poetry install
-    ```
-
-9. Run pytest
-
-    ```bash
-    poetry run pytest
-    ```
-
-    If the tests run without error then you have configured your project and you're ready to get coding.
-
-## How to Code ##
-
-1. Create a new branch
-
-   ```bash
-   git branch <new-branch>
-   ```
-  
-2. Install Poetry
-
-   ```bash
-   # probably not necessary, but it does no harm
-   poetry install
-   poetry shell
-   ```
-
-3. Do some coding and stuff...
-
-4. Push the new branch and changes
-  
-   ```bash
-   git push -u origin <new-branch>
-   ```
-
-## How to Commit ##
-
-- Commit on the branch
-- PR if it should be merged
-- Specify the type of commit:
-  - feat: The new feature you're adding to a particular application
-  - fix: A bug fix
-  - style: Feature and updates related to styling
-  - refactor: Refactoring a specific section of the codebase
-  - test: Everything related to testing
-  - docs: Everything related to documentation
-  - chore: Regular code maintenance.[ You can also use emojis to represent commit types]
+// WGS84 to BNG
+POST /convert/wgs84_to_bng
+{
+  "latitude": 51.5074,
+  "longitude": -0.1278
+}
+```
