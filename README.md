@@ -9,7 +9,7 @@ This is a simple FastAPI application for converting coordinates between the Brit
 
 ## Installation
 
-To run this application, you will need Python installed on your system. The application uses FastAPI and pyproj for coordinate conversions, and Poetry to manage the project.
+To run this application, you will need Python installed on your system. The application uses FastAPI and pyproj for coordinate conversions, and [Poetry](https://python-poetry.org) to manage the project.
 
 1. Clone this repository:
 
@@ -38,6 +38,8 @@ poetry run uvicorn bng36_wgs84_conversion.main:app --reload
 ```
 
 The application will start on `http://127.0.0.1:8000`. You can access the API documentation and try out the API by navigating to `http://127.0.0.1:8000/docs`.
+
+There is also a notebook, `test.ipynb`, that you can use to test the API.
 
 ### API Endpoints
 
