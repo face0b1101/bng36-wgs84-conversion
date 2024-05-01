@@ -1,6 +1,6 @@
 # BNG36 <--> WGS84 Coordinate Conversion API
 
-This is a simple FastAPI application for converting coordinates between the British National Grid (BNG, OSGB36) system and the WGS84 coordinate system. [Pyproj](https://pypi.org/project/pyproj) is used for coordinate conversions. **This is an example and should not be used in Production**
+This is a simple FastAPI application for converting coordinates between the British National Grid (BNG, OSGB36) system and the WGS84 coordinate system. [pyproj](https://pypi.org/project/pyproj) is used for coordinate conversions. **This is an example and should not be used in Production**
 
 ## Features
 
