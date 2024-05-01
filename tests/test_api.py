@@ -2,7 +2,7 @@
 
 from fastapi.testclient import TestClient
 
-from bng36_wgs84_conversion.main import app
+from bng36_wgs84_conversion.app import app
 
 client = TestClient(app)
 

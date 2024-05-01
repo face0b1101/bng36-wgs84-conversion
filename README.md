@@ -41,6 +41,20 @@ The application will start on `http://127.0.0.1:8000`. You can access the API do
 
 There is also a notebook, `test.ipynb`, that you can use to test the API.
 
+### Docker
+
+You can also use Docker to build and run the application.
+
+Build the Docker image and run it with the following environment variables.
+
+```sh
+# docker build -f Dockerfile -t face0b1101/hmrc-chatbot-rag-demo .
+DOCKER_BUILDKIT=1 docker build -f Dockerfile --target runtime -t face0b1101/bng36-wgs84-conversion:0.1 .
+
+# or...
+docker compose build
+```
+
 ### API Endpoints
 
 - `POST /convert/bng_to_wgs84`: Converts BNG (OSGB36) coordinates to WGS84 coordinates.

@@ -42,4 +42,4 @@ line-length = 88
 profile = "black"
 
 [tool.poetry.scripts]
-bng36-wgs84-conversion = "bng36_wgs84_conversion.main:main"
+bng36-wgs84-conversion = "bng36_wgs84_conversion.app:main"
