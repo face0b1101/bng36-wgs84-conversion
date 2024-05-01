@@ -53,6 +53,7 @@ DOCKER_BUILDKIT=1 docker build -f Dockerfile --target runtime -t face0b1101/bng3
 
 # or...
 docker compose build
+docker compose up
 ```
 
 ### API Endpoints
