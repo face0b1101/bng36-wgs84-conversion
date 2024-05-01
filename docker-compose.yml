@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  bng36-wgs84-conversion:
+    image: face0b1101/bng36-wgs84-conversion:0.1
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+      args:
+        DOCKER_BUILDKIT: 1
+    container_name: bng36-wgs84-conversion
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
